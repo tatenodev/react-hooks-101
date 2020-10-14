@@ -43,14 +43,8 @@ const events = ( state = [], action ) => {
             const length = state.length
             let id = length === 0 ? 1 : state[length - 1].id + 1
             return [...state, {id, ...event}]
-            // return [...state, {id: id, ...event}] id: idと重複している際は省略形で書ける
-            // if (length === 0) {
-            //     id = 1
-            // } else {
-            //     id = state[length - 1].id + 1
-            // }
         case 'DELETE_EVENT':
-            return state
+            return state.filter(event => event.id !== action.id)
         case 'DELETE_ALL_EVENTS':
             return []
         default:
